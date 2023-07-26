@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sist.dao.food-mapper">
+
+	<select id="foodCategoryListData" resultType="FoodVO" parameterType="hashmap">
+		SELECT cno, title, subject, num
+		FROM (SELECT cno, title, subject, rownum AS num 
+		FROM (SELECT cno, title, subject FROM food_category ORDER BY cno ASC))
+		WHERE num BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="foodCategoryTotalPage" resultType="int">
+		SELECT CEIL(COUNT(*)/10.0) FROM food_category
+	</select>
+
+</mapper>

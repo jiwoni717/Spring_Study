@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<!-- 
+	properties?
+	settings?
+	typeAliases?
+	typeHandlers?
+	objectFactory?
+	objectWrapperFactory? 
+ 	reflectorFactory?
+ 	plugins?
+ 	environments?
+ 	databaseIdProvider?
+ 	mappers?
+-->
+
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.sist.dao.StudentVO" alias="StudentVO"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="com/sist/dao/student-mapper.xml"/>
+	</mappers>
+</configuration>

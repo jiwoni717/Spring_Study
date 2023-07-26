@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="sa1" class="com.sist.main4.Sawon"
+		p:sabun="1"
+		p:name="홍길동"
+		p:dept="개발부"
+		p:job="대리"
+		p:pay="4200"
+		init-method="init"
+		destroy-method="destroy"
+	/>
+	
+	<bean id="mc" class="com.sist.main4.MainClass"
+		p:sa-ref="sa1"
+	/>
+
+</beans>
