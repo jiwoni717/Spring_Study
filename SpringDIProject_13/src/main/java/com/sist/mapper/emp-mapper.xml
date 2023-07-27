@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sist.mapper.emp-mapper">
+<!-- 
+	#{} : ''가 붙음
+	${} : ''(x) → 테이블명이나 컬럼명 가져올 때
+-->
+
+	<!-- 조인 -->
+	<resultMap type="EmpVO" id="empMap">
+		<result column="dname" property="dvo.dname"/>
+		<result column="loc" property="dvo.loc"/>
+	</resultMap>
+	
+	<!-- 중복 SQL문 제거(재사용) -->
+	<sql id="select-emp">
+		SELECT empno, ename, job, TO_CHAR(hiredate,'yyyy-MM-dd') as dbday, sal, dname, loc
+		FROM emp, dept
+		WHERE emp.deptno=dept.deptno
+	</sql>
+	
+	<select id="empdeptListData" resultMap="empMap">
+		<include refid="select-emp"/>
+		ORDER BY sal DESC
+	</select>
+	<select id="empdeptDetailData" resultMap="empMap" parameterType="int">
+		<include refid="select-emp"/> AND empno=#{empno}
+	</select>
+</mapper>
