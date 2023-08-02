@@ -42,6 +42,20 @@
 		     단점 : JDK 1.8까지
 	-->
 	
+	<!-- @reponsebody 한글 깨짐 -->
+	<mvc:annotation-driven>
+	<mvc:message-converters>
+		<!-- @ResponseBody로 String 처리할때 한글처리 -->
+		<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+			<property name="supportedMediaTypes">
+			    <list>
+			        <value>text/html;charset=UTF-8</value>
+			    </list>
+			</property>
+		</bean>
+	</mvc:message-converters>
+	</mvc:annotation-driven>
+	
 	<!-- ViewResolver(JSP 찾기) → 경로명, 확장자 -->
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"
 		p:prefix="/"

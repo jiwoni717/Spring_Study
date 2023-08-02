@@ -30,5 +30,25 @@ public class SeoulDAO {
 		public int seoulLocationTotalPage() {
 			return mapper.seoulLocationTotalPage();
 		}
+		
+		public List<SeoulVO> seoulNatureListData(Map map)
+		{
+			return mapper.seoulNatureListData(map);
+		}
+		
+		public int seoulNatureTotalPage()
+		{
+			return mapper.seoulNatureTotalPage();
+		}
+		
+		public List<SeoulVO> seoulShopListData(Map map)
+		{
+			return mapper.seoulShopListData(map);
+		}
+		
+		public int seoulShopTotalPage()
+		{
+			return mapper.seoulShopTotalPage();
+		}
 
 }

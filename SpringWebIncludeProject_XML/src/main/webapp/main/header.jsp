@@ -11,7 +11,7 @@
 <nav class="navbar navbar-inverse">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="#">MVCInclude</a>
+      <a class="navbar-brand" href="../main/main.do">MVCInclude</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="../main/main.do">Home</a></li>
@@ -20,8 +20,8 @@
         <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li><a href="../seoul/location.do">명소</a></li>
-          <li><a href="#">자연 & 관광</a></li>
-          <li><a href="#">쇼핑</a></li>
+          <li><a href="../seoul/nature.do">자연 & 관광</a></li>
+          <li><a href="../seoul/shop.do">쇼핑</a></li>
         </ul>
       </li>
       <li><a href="../databoard/list.do">자료실</a></li>
