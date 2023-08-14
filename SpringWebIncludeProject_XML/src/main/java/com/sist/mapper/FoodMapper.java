@@ -42,12 +42,4 @@ public interface FoodMapper {
 			+ "WHERE fno=#{fno}")
 	public FoodVO foodDetailData(int fno);
 	
-	/* 
-	 *  mapper에서는 반드시 매개변수가 1개이다
-	 *  dao는 상관없음
-	 *  	=> 데이터가 vo에 있는 데이터면 vo
-	 *  	=> vo에 없는 변수 첨부시에는 map
-	 *  	=> 동적쿼리를 이용할 때는 map
-	 *  
-	 */
 }
