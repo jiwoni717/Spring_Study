@@ -17,6 +17,7 @@
 			)
 			fileIndex++;
 		})
+		
 		$('#removeBtn').click(function() {
 			if(fileIndex>0)
 			{
