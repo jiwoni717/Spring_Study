@@ -23,4 +23,13 @@ public interface CampDAO extends JpaRepository<CampEntity, Integer>{
 	
 	public CampEntity findByCno(int cno);
 	
+	@Query(value = "SELECT * FROM camp2 WHERE address LIKE CONCAT('%', :address, '%') ORDER BY cno ASC LIMIT :start, 6", nativeQuery = true)
+	public List<CampEntity> campFindList(@Param("address") String address, @Param("start") Integer start);
+	
+	@Query(value = "SELECT COUNT(*) FROM camp2 WHERE address LIKE CONCAT('%', :address, '%')", nativeQuery = true)
+	public int campFindTotalCount(@Param("address") String address);
+	
+	@Query(value = "SELECT CEIL(COUNT(*)/6.0 FROM camp2 LIKE CONCAT('%', :address, '%')", nativeQuery = true)
+	public int campFindTotalPage(@Param("address") String address);
+	
 }
