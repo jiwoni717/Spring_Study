@@ -636,8 +636,8 @@ ol {
 .hero__search {
 	align-content:center;
 	overflow: hidden;
-	margin-top: 30px;
-	margin-bottom: 30px;
+	margin-top: 50px;
+	margin-bottom: 50px;
 }
 
 .hero__search__form {
@@ -1648,6 +1648,12 @@ ol {
 
 .product__pagination a:hover,
 .blog__pagination a:hover {
+	background: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
+
+.blog__pagination .current {
 	background: #7fad39;
 	border-color: #7fad39;
 	color: #ffffff;
