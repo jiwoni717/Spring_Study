@@ -20,4 +20,7 @@ public interface CampDAO extends JpaRepository<CampEntity, Integer>{
 	
 	@Query(value = "SELECT CEIL(COUNT(*)/6.0) FROM camp2", nativeQuery = true)
 	public int campTotalPage(@Param("start") Integer start);
+	
+	public CampEntity findByCno(int cno);
+	
 }

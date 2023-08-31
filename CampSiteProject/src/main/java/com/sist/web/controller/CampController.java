@@ -55,4 +55,29 @@ public class CampController {
 		model.addAttribute("main_html", "camp/camp_main");
 		return "main";
 	}
+	
+	@GetMapping("camp_detail")
+	public String camp_detail(int cno, Model model)
+	{
+		
+		CampEntity vo = dao.findByCno(cno);
+		
+		vo.setHit(vo.getHit()+1);
+		dao.save(vo);
+		
+		String img = vo.getImage();
+		if(img.contains("^"))
+		{
+			img = img.substring(0, img.indexOf("^"));
+		}
+		String phone = vo.getPhone();
+		phone = phone.substring(0,3)+"-"+phone.substring(3,7)+"-"+phone.substring(7);
+		vo.setPhone(phone);
+		
+		vo = dao.findByCno(cno);
+		
+		model.addAttribute("vo", vo);
+		model.addAttribute("main_html", "camp/camp_detail");
+		return "main";
+	}
 }

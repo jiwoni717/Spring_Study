@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	.blog__details__hero__text {
+	
+	}
+	
+	.blog__details__text p {
+		padding: 0px 50px 0px 50px;
+	}
+</style>
+</head>
+<body>
+
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details spad">
+        <div class="container">
+            <div class="row">
+            
+                <div class="col-lg-12">
+                    <div class="blog__details__text">
+                        <img th:src="${vo.image}">
+                        <h3 style="padding-left: 20px;" th:text="${vo.name}"></h3>
+                        <p><i class="fa-solid fa-location-dot fa-xs"></i>&nbsp;&nbsp;<span th:text="${vo.address}"></span></p>
+                        <p><i class="fa-solid fa-phone fa-xs" style="inline"></i>&nbsp;&nbsp;<span th:text="${vo.phone}"></span></p>
+                        <hr>
+                        <pre><p th:text="${vo.msg}" style="line-height: 20px; padding-top: 20px;"></p></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Section End -->
+
+    <!-- Related Blog Section Begin -->
+    <section class="related-blog spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related-blog-title">
+                        <h2>최근 본 캠핑장</h2>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 쿠키 -->
+            <div class="row">
+            
+                <div class="col-lg-2 col-md-2 col-sm-4">
+                    <div class="blog__item">
+                        <div class="blog__item__pic">
+                            <img src="../img/blog/blog-1.jpg" alt="">
+                        </div>
+                        <div class="blog__item__text">
+                            <ul>
+                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
+                                <li><i class="fa fa-comment-o"></i> 5</li>
+                            </ul>
+                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
+                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+        </div>
+    </section>
+    
+</body>
+</html>
