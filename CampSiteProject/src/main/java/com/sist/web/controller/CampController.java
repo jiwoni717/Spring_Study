@@ -1,6 +1,11 @@
 package com.sist.web.controller;
 
 import java.util.*;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -58,7 +63,7 @@ public class CampController {
 	}
 	
 	@GetMapping("camp_detail")
-	public String camp_detail(int cno, Model model)
+	public String camp_detail(int cno, Model model, HttpServletRequest request, HttpServletResponse response)
 	{
 		
 		CampEntity vo = dao.findByCno(cno);
@@ -78,13 +83,61 @@ public class CampController {
 		String phone = vo.getPhone();
 		phone = phone.substring(0,3)+"-"+phone.substring(3,7)+"-"+phone.substring(7);
 		vo.setPhone(phone);
+		
+		Cookie[] cookies = request.getCookies();
+		List<CampEntity> cList = new ArrayList<CampEntity>();
+		
+		if(cookies!=null)
+		{
+			for(int i=cookies.length-1;i>=0;i--)
+			{
+				String key = cookies[i].getName();
+				if(key.equals("camp_"+cno)) {
+					cookies[i].setMaxAge(0);
+					cookies[i].setPath("/");
+					response.addCookie(cookies[i]);
+				}
+				
+				if(key.startsWith("camp_"))
+				{
+					String data = cookies[i].getValue();
+					String name = vo.getName();
+					String image = vo.getImage();
+					String address = vo.getAddress();
+					
+					if(image.contains("^"))
+					{
+						image = vo.getImage();
+						image = image.substring(0, image.indexOf("^"));
+						vo.setImage(image);
+					}
+					
+					if(name.length()>7) {
+		                  vo.setName(name.substring(0,7)+"..");
+		            }
+
+					cList.add(vo);
+					
+					if(cList.size()==7)
+					{
+						break;
+					}
+				}
+			}
+		}
+		
+		Cookie cookie = new Cookie("camp_"+cno, String.valueOf(cno));
+		cookie.setPath("/");
+		cookie.setMaxAge(60*60*24);
+		response.addCookie(cookie);
 
 		model.addAttribute("vo", vo);
+		model.addAttribute("cList", cList);
 		model.addAttribute("main_html", "camp/camp_detail");
 		return "main";
 	}
 	
-	@PostMapping("camp_find")
+	@RequestMapping("camp_find")
 	public String camp_find(String page, String fd, Model model)
 	{
 		if(fd==null)
@@ -107,12 +160,23 @@ public class CampController {
 		List<CampEntity> list = dao.campFindList(fd, start);
 		int count = dao.campFindTotalCount(fd);
 		
+		for(CampEntity vo : list)
+		{
+			if(vo.getImage().contains("^"))
+			{
+				String image = vo.getImage();
+				image = image.substring(0, image.indexOf("^"));
+				vo.setImage(image);
+			}
+		}
+		
 		model.addAttribute("curpage", curpage);
 		model.addAttribute("totalpage", totalpage);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("list", list);
 		model.addAttribute("count", count);
+		model.addAttribute("fd", fd);
 		model.addAttribute("main_html", "camp/camp_find");
 		return "main";
 	}

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.sist.web.entity.*;
 
 @Repository
-
 public interface CampDAO extends JpaRepository<CampEntity, Integer>{
 	
 	@Query(value = "SELECT * FROM camp2 ORDER BY hit DESC LIMIT 0, 8", nativeQuery = true)
@@ -29,7 +28,7 @@ public interface CampDAO extends JpaRepository<CampEntity, Integer>{
 	@Query(value = "SELECT COUNT(*) FROM camp2 WHERE address LIKE CONCAT('%', :address, '%')", nativeQuery = true)
 	public int campFindTotalCount(@Param("address") String address);
 	
-	@Query(value = "SELECT CEIL(COUNT(*)/6.0 FROM camp2 LIKE CONCAT('%', :address, '%')", nativeQuery = true)
+	@Query(value = "SELECT CEIL(COUNT(*)/6.0) FROM camp2 WHERE address LIKE CONCAT('%', :address, '%')", nativeQuery = true)
 	public int campFindTotalPage(@Param("address") String address);
 	
 }

@@ -3,10 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery.js"></script>
+<script>
+	$(function() {
+	    // 예약하기 버튼 클릭 시 처리
+	    $("#resBtn").click(function() {
+		    Swal.fire({
+		        title: '완료',
+		        text: '예약이 완료되었습니다!',
+		        icon: 'success'
+		    }).then(function() {
+		        
+		    	setTimeout(function() {
+	                window.location.href = '/';
+	            }, 3000);
+		    	
+		    });
+
+	    });
+	});
+</script>
 </head>
 <body>
 	<section class="checkout spad">
         <div class="container">
+        	
+        	
         	<div class="row" style="margin-bottom: 40px;">
         		<table class="table">
         			<tr>
@@ -16,7 +40,7 @@
         			</tr>
         			<tr>
         				<td width=30% class="text-center" style="vertical-align: middle;">
-        					<img th:src="${vo.image}" style="width: 80%">
+        					<span><img th:src="${vo.image}" style="width: 80%"></span>
         				</td>
         				<td width=50% th:text="${vo.name}" style="vertical-align: middle;"></td>
         				<td width=20% class="text-center"></td>
@@ -26,56 +50,58 @@
         	
             <div class="checkout__form">
                 <h4>주문자 정보</h4>
-                <form action="#">
-                    <div class="row">
-                        <div class="col-lg-8 col-md-6">
-                            <div class="checkout__input">
-                                <p>예약자 이름<span>*</span></p>
-                                <input type="text">
-                            </div>
-                            <div class="checkout__input">
-                                <p>예약일<span>*</span></p>
-                                <input type="text" placeholder="20XX-XX-XX ~ 20XX-XX-XX">
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>휴대폰 번호<span>*</span></p>
-                                        <input type="text" placeholder="010-XXXX-XXXX">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="checkout__input">
-                                        <p>이메일<span>*</span></p>
-                                        <input type="text" placeholder="ID@naver.com">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="checkout__input">
-                                <p>비밀번호<span>*</span></p>
-                                <input type="text" placeholder="작성하신 비밀번호로 예약 확인을 할 수 있습니다.">
-                            </div>
-                            <div class="checkout__input">
-                                <p>그 외 문의사항</p>
-                                <input type="text" placeholder="문의사항이 있다면 적어주세요.">
-                            </div>
+                <form method="post" action="reserve/reserve_ok">
+                <div class="row">
+                    <div class="col-lg-12 col-md-6">
+                        <div class="checkout__input">
+                            <p>예약자 이름<span>*</span></p>
+                            <input type="text" id=name>
+                            <input type=hidden id=cname th:value="${vo.name}">
+                            <input type=hidden id=cno th:value="${vo.cno}">
+                            <input type=hidden id=image th:value="${vo.image}">
                         </div>
-                        <div class="col-lg-4 col-md-6">
-                            <div class="checkout__order">
-                                <h4>주문 정보</h4>
-                                <ul>
-                                    <li th:text="${vo.name}"> <span>$75.99</span></li>
-                                </ul>
-                                <div class="checkout__order__subtotal">Subtotal <span>$750.99</span></div>
-                                <div class="checkout__order__total">Total <span>$750.99</span></div>
-                                <div class="checkout__input__checkbox">
+                        <div class="checkout__input">
+                            <p>예약일<span>*</span></p>
+                            <input type="text" placeholder="20XX-XX-XX ~ 20XX-XX-XX" id=rdate>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="checkout__input">
+                                    <p>휴대폰 번호<span>*</span></p>
+                                    <input type="text" placeholder="010-XXXX-XXXX" id=phone>
                                 </div>
-                                <button type="submit" class="site-btn">예약하기</button>
                             </div>
+                            <div class="col-lg-4">
+                                <div class="checkout__input">
+                                    <p>이메일<span>*</span></p>
+                                    <input type="text" placeholder="ID@naver.com" id=email>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+	                            <div class="checkout__input">
+		                            <p>비밀번호<span>*</span></p>
+		                            <input type="password" id=pwd>
+		                        </div>
+	                        </div>
+	                        <div class="checkout__input">
+	                        	<p style="color:#dd2222; margin-left: 15px;">작성하신 이메일과 비밀번호로 예약 확인을 할 수 있습니다.</p>
+	                        </div>
+                        </div>
+                        
+                        <div class="checkout__input">
+                            <p>그 외 문의사항</p>
+                            <input type="text" placeholder="문의사항이 있다면 적어주세요.">
+                        </div>
+                        
+                        <div class="text-right">
+                        	<button class="primary-btn btn-lg" style="border: none;" id="resBtn">예약하기</button>
+                        	<input type=button class="primary-btn btn-lg" style="border: none; background-color: #6F6F6F;" value="취소">
                         </div>
                     </div>
-                </form>
+                    </form>
+                </div>
             </div>
+
         </div>
     </section>
     <!-- Checkout Section End -->
