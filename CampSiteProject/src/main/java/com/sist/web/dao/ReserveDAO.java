@@ -11,7 +11,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReserveDAO extends JpaRepository<ReserveEntity, Integer> {
 	
-	@Query(value = "SELECT * FROM reservation WHERE email=:email, password=:password", nativeQuery = true)
+	@Query(value = "SELECT * FROM reservation WHERE email=:email AND password=:password", nativeQuery = true)
 	public List<ReserveEntity> reserveListData(@Param("email") String email, @Param("password") String password);
 	
 	public ReserveEntity findByRno(int rno);
