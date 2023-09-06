@@ -33,8 +33,8 @@ public class NewsManager {
    {
 	   List<NewsVO> list=
 			   new ArrayList<NewsVO>();
-	   String clientId = "xzCkjdHVMmHBQA5GsaNk"; //애플리케이션 클라이언트 아이디
-       String clientSecret = "xpoZsdLvAt"; //애플리케이션 클라이언트 시크릿
+	   String clientId = "8me8r8VrfTW8aN0AM4Bc"; //애플리케이션 클라이언트 아이디
+       String clientSecret = "_dYCh9gY_c"; //애플리케이션 클라이언트 시크릿
 
 
        String text = null;
